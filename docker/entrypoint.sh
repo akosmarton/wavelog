@@ -22,6 +22,7 @@ memory_limit = ${PHP_MEMORY_LIMIT}
 upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}
 post_max_size = ${PHP_POST_MAX_SIZE}
 max_execution_time = ${PHP_MAX_EXECUTION_TIME}
+session.upload_progress.enabled = Off
 EOF
 
 # Optionally remap the www-data user/group to a host-provided UID/GID so that

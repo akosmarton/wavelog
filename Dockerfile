@@ -3,6 +3,10 @@ FROM php:8.5-apache-trixie
 # we always need this env var, otherwise wavelog can't work properly in a docker environment
 ENV CI_ENV=docker
 
+# fail the build early if the base image ships an older PHP than we support
+RUN php -r 'exit(version_compare(PHP_VERSION, "8.5.12", "<") ? 1 : 0);' \
+    || { echo "ERROR: PHP >= 8.5.12 required, base image has $(php -r 'echo PHP_VERSION;')"; exit 1; }
+
 # prepare the php install helper
 COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
