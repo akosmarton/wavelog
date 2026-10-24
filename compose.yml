@@ -1,0 +1,19 @@
+services:
+  wavelog:
+    image: docker.io/makos/wavelog
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    environment:
+      CI_ENV: docker
+    volumes:
+      - config:/var/www/html/application/config/docker
+      - uploads:/var/www/html/uploads
+      - userdata:/var/www/html/userdata
+    restart: unless-stopped
+
+volumes:
+  config:
+  uploads:
+  userdata:
